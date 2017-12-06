@@ -5,6 +5,9 @@
 		},
 		{
 			"path": "ModuleCommonJS"
+		},
+		{
+			"path": "JeuCommonJS"
 		}
 	]
 }
