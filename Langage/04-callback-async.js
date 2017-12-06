@@ -14,10 +14,10 @@ setTimeout(function timeoutB() {
 // |
 // |
 // |
-// |                idle  log      log       idle
-// |setTimeout-log ...... timeoutA-timeoutB .......
+// |               idle  log      log       idle
+// |setT-setT-log ...... timeoutA-timeoutB .......
 // +-----------------------------------> temps
 //
-// callback queue : timeoutB
+// callback queue :
 
 console.log('fin');

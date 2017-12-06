@@ -43,14 +43,19 @@ Math.random = backupRandom;
 
 // Créer un objet de manière ponctuel (une seule fois avec des méthodes) ou plusieurs fois sans méthodes
 // object literal
-const coords = {
+const coords1 = {
   x: 10,
   y: 20,
 };
 
-coords.z = 30; // extensibilité
+coords1.z = 30; // extensibilité
 
-console.log(coords.x); // 10
+console.log(coords1.x); // 10
+
+const coords2 = {
+  x: 10,
+  y: 20,
+};
 
 const myMaths = {
   sum: (a, b) => a + b,
@@ -73,11 +78,15 @@ const coordsFactory = (x, y, z) => {
   return obj;
 }
 const coords2d = coordsFactory(10, 20);
-const coords3d = coordsFactory(10, 20, 30);
+const coords3d = coordsFactory(10, , 30);
 
 // Objet multi-instancié créé simplement et avec méthode (fonction constructeur)
 const Contact = function(prenom) {
   this._prenom = prenom;
+};
+
+Contact.getClass = function() {
+  return 'Contact';
 };
 
 Contact.prototype.hello = function() {

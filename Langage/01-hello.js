@@ -1,3 +1,4 @@
+// (function (exports, require, module, __filename, __dirname) {
 // @ts-check
 /**
  * Additionne 2 params
@@ -8,3 +9,4 @@
 const sum = (a, b) => a + b;
 
 console.log(sum(1, 2));
+// });

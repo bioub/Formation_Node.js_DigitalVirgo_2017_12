@@ -1,4 +1,4 @@
-const Random = {
+const random = {
   get: function () {
     return Math.random();
   },
@@ -29,7 +29,7 @@ const Jeu = function(options) {
     output: process.stdout
   });
 
-  this._entierAlea = Random.getIntInclusive(min, max);
+  this._entierAlea = random.getIntInclusive(min, max);
   this._essais = [];
 };
 
