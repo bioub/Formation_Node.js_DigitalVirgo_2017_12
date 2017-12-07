@@ -10,7 +10,30 @@ const contacts = [{
   prenom: 'Eric',
   nom: 'Martin',
   id: 456,
-}]
+}];
+
+// Service Tableau
+const service = {
+  getList: () => Promise.resolve(contacts),
+  getById: (id) => {
+    if (typeof id !== 'number') {
+      id = Number(id);
+    }
+    const contact = contacts.find(c => c.id === id);
+    return Promise.resolve(contact);
+  },
+  deleteById: (id) => {
+    if (typeof id !== 'number') {
+      id = Number(id);
+    }
+    const contact = contacts.find(c => c.id === id);
+    if (contact) {
+      const i = contacts.indexOf(contact);
+      contacts.splice(i, 1);
+    }
+    return Promise.resolve(contact);
+  },
+};
 
 // Exercice :
 // Créer 3 routes
@@ -41,6 +64,38 @@ app.get('/api/hello/:prenom', (req, res, next) => {
     prenom: req.params.prenom
   });
 });
+
+app.get('/api/contacts', async (req, res, next) => {
+  const contacts = await service.getList(); // Service Layer
+  res.json(contacts);
+});
+
+app.get('/api/contacts/:id', async (req, res, next) => {
+  const contact = await service.getById(req.params.id); // Service Layer
+  if (!contact) {
+    req.notFoundReason = `Contact ${req.params.id} not found`;
+    return next();
+  }
+  res.json(contact);
+});
+
+app.delete('/api/contacts/:id', async (req, res, next) => {
+  const contact = await service.deleteById(req.params.id); // Service Layer
+  if (!contact) {
+    req.notFoundReason = `Contact ${req.params.id} not found`;
+    return next();
+  }
+  res.json(contact);
+});
+
+// 404 Middleware
+app.use('/api', (req, res, next) => {
+  res.statusCode = 404;
+  res.json({
+    msg: req.notFoundReason || 'Not Found',
+  });
+});
+
 
 app.listen(8080, () => {
   console.log('Le serveur démarré');
