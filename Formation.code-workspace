@@ -14,6 +14,9 @@
 		},
 		{
 			"path": "Exercice-Build"
+		},
+		{
+			"path": "Build-Webpack"
 		}
 	]
 }

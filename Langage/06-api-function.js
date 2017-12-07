@@ -15,3 +15,9 @@ hello.call(contact, 'Toto', 'Titi');
 hello.apply(contact, ['Toto', 'Titi']);
 hello.call(contact, ...['Toto', 'Titi']);
 
+/*
+const elts = document.querySelectorAll('.btn');
+Array.prototype.forEach.call(elts, (elt) => {
+
+});
+*/

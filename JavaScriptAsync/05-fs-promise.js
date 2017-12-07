@@ -3,7 +3,14 @@ const path = require('path');
 
 function log(filePath, msg) {
   const line = `[${(new Date).toISOString()}] ${msg}\n`;
-  return fs.appendFile(filePath, line);
+  return new Promise((resolve, reject) => {
+    fs.appendFile(filePath, line, (err) => {
+      if (err) {
+        return reject(err);
+      }
+      resolve();
+    });
+  });
 }
 
 const logDir = path.resolve(__dirname, 'logs');

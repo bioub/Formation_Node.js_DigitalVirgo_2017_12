@@ -54,7 +54,7 @@ const contactES6 = {
   },
   helloAsync() {
     setTimeout(() => {
-      console.log('ES3 Bonjour je suis ' + this.prenom);
+      console.log('ES6 Bonjour je suis ' + this.prenom);
     }, 100);
   }
 };
