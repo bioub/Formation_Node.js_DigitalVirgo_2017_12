@@ -1,10 +1,12 @@
 const assert = require('assert');
 const chai = require('chai');
 const sinon = require('sinon');
-const sinonChai = require("sinon-chai");
+const sinonChai = require('sinon-chai');
+const chaiHttp = require('chai-http');
 const expect = chai.expect;
 chai.should();
 chai.use(sinonChai);
+chai.use(chaiHttp);
 
 const hello = (prenom) => `Bonjour ${prenom}`;
 const withCallback = (next) => {
@@ -42,5 +44,22 @@ describe('Hello Tests suite', () => {
       expect(cb).to.have.been.calledOnce;
     });
   });
+
+  describe('functionnal', () => {
+    it('should return 200', (done) => {
+
+      // chai.request(app)
+      chai.request('https://www.google.fr')
+        .get('/')
+        .end(function (err, res) {
+          expect(err).to.be.null;
+          expect(res).to.have.status(200);
+          done();
+      });
+
+    });
+  });
+
+
 
 });
