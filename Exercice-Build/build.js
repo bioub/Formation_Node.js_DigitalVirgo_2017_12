@@ -41,15 +41,22 @@ async function buildHTML() {
 }
 
 async function build() {
-  await fs.remove(distPath);
-  await fs.mkdir(distPath);
+  try {
+    await fs.remove(distPath);
+    await fs.mkdir(distPath);
 
-  await Promise.all([
-    buildJS(),
-    buildHTML(),
-  ]);
+    await Promise.all([
+      buildJS(),
+      buildHTML(),
+    ]);
 
-  console.log('Build Done');
+    // TODO md5
+
+    console.log('Build Done');
+  }
+  catch (err) {
+    console.log('Build Error ', err.message);
+  }
 }
 
 build();

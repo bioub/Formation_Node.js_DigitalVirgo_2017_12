@@ -1,6 +1,6 @@
 import format from 'date-fns/format';
+import config from '../config/config.json5';
 import { getRandomIntInclusive } from './random';
-import config from '../config/config';
 
 class Horloge {
   /**

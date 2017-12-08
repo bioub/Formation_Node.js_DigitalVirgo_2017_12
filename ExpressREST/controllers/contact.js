@@ -1,8 +1,13 @@
-const service = require('../models/contact');
+const service = require('../models/contact-mongoose');
 
 exports.list = async (req, res, next) => {
-  const contacts = await service.getList(); // Service Layer
-  res.json(contacts);
+  try {
+    const contacts = await service.getList(); // Service Layer
+    res.json(contacts);
+  }
+  catch (err) {
+    console.log(err);
+  }
 };
 
 exports.show = async (req, res, next) => {

@@ -2,7 +2,7 @@ const net = require('net');
 
 const server = net.createServer();
 
-server.on('close', () => {
+server.once('close', () => {
   console.log('close');
 });
 server.on('connection', (socket) => {
@@ -19,7 +19,7 @@ server.on('error', (err) => {
     console.log('Erreur : le port est déjà utilisé');
   }
 });
-server.on('listening', () => {
+server.once('listening', () => {
   console.log('Le serveur a démarré');
 });
 
